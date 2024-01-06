@@ -13,7 +13,7 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.sha }}
     - run: |
-        git log ${{ github.head_ref }}
+        git log --pretty=%B -1 ${{ github.head_ref }}
     - uses: actions/setup-python@v3
     - name: Generate fake commit message
       run: |
