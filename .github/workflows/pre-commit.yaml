@@ -12,8 +12,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Cache commit message
       run: |
-        git log rev-list --all
+        git log -1 --pretty=%B
 
     - uses: actions/setup-python@v3
-    
+
     - uses: pre-commit/action@v3.0.0
