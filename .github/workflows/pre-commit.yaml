@@ -15,7 +15,7 @@ jobs:
     - run: |
         git log --format=%B -n 1 ${{github.event.after}} > .git/COMMIT_EDITMSG
         cat .git/COMMIT_EDITMSG
-    - uses: actions/setup-python@v3
+    # - uses: actions/setup-python@v3
     - run: |
         pip install pre-commit
         pre-commit run --all
