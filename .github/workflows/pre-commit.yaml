@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Cache commit message
       run: |
-        git log -n1 --pretty=%B {{ github.sha }}
+        git log -n1 --pretty=%B ${{ github.sha }}
 
     - uses: actions/setup-python@v3
 
