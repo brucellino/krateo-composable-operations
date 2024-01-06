@@ -13,11 +13,8 @@ jobs:
       with:
         ref: ${{github.event.after}}
     - run: |
-        git log --format=%B -n 1 ${{github.event.after}}
+        git log --format=%B -n 1 ${{github.event.after}} > commit_msg
     - uses: actions/setup-python@v3
-    - name: Generate fake commit message
-      run: |
-        echo "ci: a fine message">commit_msg
     - uses: pre-commit/action@v3.0.0
       with:
         extra_args: --commit-msg-filename=commit_msg
