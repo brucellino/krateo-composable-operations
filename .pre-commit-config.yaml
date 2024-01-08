@@ -1,5 +1,6 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
+# Run pre-commit autoupdate if you want to manually check for version changes of the hooks used.
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
@@ -8,6 +9,10 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
+  # The commitlint pre-commit hook is installed in the pre-commit stage.
+  # it depends on the conventional commit configuration, which can be
+  # imported as a dependency. The configuration file is required
+  # though to tell commitlint which preset config to use.
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v9.11.0
     hooks:
@@ -16,3 +21,22 @@ repos:
           - pre-commit
         additional_dependencies:
           - "@commitlint/config-conventional"
+  # Check actions against the Github schema...
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.27.3
+    hooks:
+    #  - id: check-jsonschema # anything else in JSON you can add here
+     - id: check-github-workflows
+
+  # ESLint for NodeJS
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.0.0-alpha.0
+    hooks:
+      - id: eslint
+
+  # There are quite a few pre-commit hooks for golang. I chose this one
+  - repo: https://github.com/dnephin/pre-commit-golang
+    rev: v0.5.1
+    hooks:
+      - id: go-fmt
+      - id: go-lint
